@@ -1,0 +1,35 @@
+<mat-grid-list cols="4" rowHeight="100px">
+  <mat-grid-tile colspan="4" rowspan="1" class="h-wrapper">
+    <mat-icon routerLink="..">keyboard_backspace</mat-icon>
+    <h1>Add event</h1>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="3" class="form">
+    <form [formGroup]="form">
+      <label for="name">Name</label>
+      <mat-form-field appearance="fill">
+        <input matInput id="name" formControlName="name">
+        <mat-error *ngIf="form.controls.name.invalid">Поле обязательно к заполнению</mat-error>
+      </mat-form-field>
+      <label for="address">Address</label>
+      <mat-form-field appearance="fill">
+        <input matInput id="address" formControlName="address">
+        <mat-error *ngIf="form.controls.address.invalid">Поле обязательно к заполнению</mat-error>
+      </mat-form-field>
+      <label for="date">Date</label>
+      <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="picker" id="date" formControlName="date">
+        <mat-error *ngIf="form.controls.date.invalid">Неверный формат даты</mat-error>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </form>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="2"></mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="4" class="preview">
+    <div>Preview</div>
+    <app-event-card [card]="card | async"></app-event-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="1" class="btn-wrapper">
+    <button mat-raised-button [disabled]="form.invalid" (click)="saveCard()">Add</button>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,9 @@
+<h1>Home</h1>
+<div class="card-wrapper">
+  <ng-container *ngIf="(cards$ | async) as cards">
+    <ng-container *ngFor="let card of cards">
+      <app-event-card [card]="card"></app-event-card>
+    </ng-container>
+    <app-add-event-button [routerLink]="['/add-event']"></app-add-event-button>
+  </ng-container>
+</div>

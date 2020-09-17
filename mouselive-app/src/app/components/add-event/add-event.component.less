@@ -1,0 +1,69 @@
+.h-wrapper {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+
+  &::ng-deep .mat-figure {
+    justify-content: flex-start;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 80px;
+  }
+
+  mat-icon {
+    font-size: 150px;
+    height: auto;
+    width: auto;
+    cursor: pointer;
+  }
+}
+
+.form {
+
+  mat-grid-tile {
+    padding: 20px;
+
+  }
+
+  &::ng-deep .mat-figure {
+    justify-content: flex-start;
+    position: relative;
+    padding: 20px;
+    height: auto;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.btn-wrapper {
+  &::ng-deep .mat-figure {
+    justify-content: flex-start;
+    position: relative;
+    padding: 20px;
+  }
+
+  button {
+    width: 50%;
+  }
+}
+
+.preview {
+
+  &::ng-deep .mat-figure {
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+
+    div {
+      margin-left: 20px;
+      font-size: 2em;
+    }
+  }
+
+}

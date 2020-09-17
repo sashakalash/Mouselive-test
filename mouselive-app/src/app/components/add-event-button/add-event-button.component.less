@@ -1,0 +1,42 @@
+.example-card {
+  min-width: 400px;
+  min-height: 430px;
+  margin: 20px;
+
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    font-size: 80px;
+    height: 430px;
+
+    .content-wrapper {
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      div {
+        margin-bottom: 10px;
+      }
+
+      icon-wrapper {
+        width: 100%;
+      }
+
+    }
+
+    mat-icon {
+      font-size: 150px;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  ;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+}

@@ -1,0 +1,15 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ card.name}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <span>
+      {{ card.address}}
+    </span>
+    <span>
+      {{ card.date | date: 'd MMM' }}
+    </span>
+  </mat-card-content>
+</mat-card>
