@@ -1,9 +1,11 @@
-import { CardListTypes } from './../../redux/cards.actions';
-import { IAppState } from './../../redux/app.state';
+import { selectCardList } from './../../store/reducers/cards.reducer';
+
 import { Card } from './../../models/Card';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../../store/state';
+import { CardListActions } from 'src/app/store';
 
 @Component({
   selector: 'app-main-page',
@@ -11,13 +13,14 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./main-page.component.less']
 })
 export class MainPageComponent implements OnInit {
-  cards$: Observable<Card[]> = this.store.select(state => state.cardList.cards);
+  cards$: Observable<Card[]>;
 
-  constructor(private store: Store<IAppState>) {
+  constructor(private store$: Store<AppState>) {
+    this.cards$ = this.store$.pipe(select(selectCardList));
   }
 
   ngOnInit(): void {
-    // this.store.dispatch({ type: CardListTypes.FETCH_CARD_LIST });
+    this.store$.dispatch(CardListActions.fetchingCardList());
   }
 
 }

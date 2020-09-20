@@ -1,12 +1,11 @@
 import { Card } from './../../models/Card';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
-import { Observable } from 'rxjs/internal/Observable';
 import { BehaviorSubject } from 'rxjs';
-import { isEmpty } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { IAppState } from 'src/app/redux/app.state';
-import { CardListTypes } from 'src/app/redux/cards.actions';
+
+import { AppState } from 'src/app/store/state';
+import { CardListActions } from 'src/app/store';
 
 @Component({
   selector: 'app-add-event',
@@ -17,7 +16,7 @@ export class AddEventComponent implements OnInit {
   form: FormGroup;
   card: BehaviorSubject<Card> = new BehaviorSubject(new Card());
 
-  constructor(private formBuilder: FormBuilder, private store: Store<IAppState>) { }
+  constructor(private formBuilder: FormBuilder, private store$: Store<AppState>) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -29,8 +28,8 @@ export class AddEventComponent implements OnInit {
   }
 
   saveCard(): void {
-    const card = this.form.value;
-    this.store.dispatch({ type: CardListTypes.ADD_NEW_CARD, payload: { card }});
+    this.store$.dispatch(CardListActions.addCard({ payload: Object.assign({ id: new Date().getTime() }, this.form.value )}));
+    this.form.reset();
   }
 
   private dateValidator = (): ValidatorFn => {
