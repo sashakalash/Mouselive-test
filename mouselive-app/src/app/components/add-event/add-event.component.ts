@@ -28,7 +28,7 @@ export class AddEventComponent implements OnInit {
   }
 
   saveCard(): void {
-    this.store$.dispatch(CardListActions.addCard({ payload: Object.assign({ id: new Date().getTime() }, this.form.value )}));
+    this.store$.dispatch(CardListActions.addCard({ payload: this.form.value }));
     this.form.reset();
   }
 

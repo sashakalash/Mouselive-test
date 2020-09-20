@@ -8,15 +8,17 @@ export const cardAdapter: EntityAdapter<Card> = createEntityAdapter<Card>();
 
 const defaultCardState: CardState = {
   ids: [],
-  entities: {}
+  entities: {},
+  loaded: false
 };
 
 export const initialState = cardAdapter.getInitialState(defaultCardState);
 
 export const cardReducer = createReducer(
   initialState,
-  on(CardListActions.fetchingCardListSuccess, (state, { payload }) => cardAdapter.addAll(payload, state)),
-  on(CardListActions.addCard, (state, { payload }) => cardAdapter.addOne(payload, state))
+  on(CardListActions.fetchingCardListSuccess, (state, { payload }) => cardAdapter.addAll(payload, { ...state, loaded: true })),
+  on(CardListActions.addCard, (state, { payload }) => cardAdapter.addOne(Object.assign({ id: new Date().getTime() }, payload), state)),
+  on(CardListActions.setStoredCardList, state => state),
 );
 
 const selectCardListState = (state: AppState) => state.cardListState;
@@ -24,6 +26,11 @@ const selectCardListState = (state: AppState) => state.cardListState;
 export const selectCardList = createSelector(
   selectCardListState,
   state => Object.values(state.entities)
+);
+
+export const selectCardListLoaded = createSelector(
+  selectCardListState,
+  state => state.loaded
 );
 
 export const {

@@ -5,4 +5,6 @@ export interface AppState {
   cardListState: CardState;
 }
 
-export interface CardState extends EntityState<Card> { }
+export interface CardState extends EntityState<Card> {
+  loaded: boolean;
+}

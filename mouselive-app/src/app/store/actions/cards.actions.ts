@@ -5,7 +5,8 @@ export enum CardListTypes {
   FETCH_CARD_LIST = '[MAIN CARD LIST] Fetching card list',
   FETCH_CARD_LIST_SUCCESS = '[MAIN CARD LIST] Card list successfully fetched',
   FETCH_CARD_LIST_FAIL = '[MAIN CARD LIST] Card list fetch failed',
-  ADD_NEW_CARD = '[MAIN CARD LIST] Adding new card'
+  ADD_NEW_CARD = '[MAIN CARD LIST] Adding new card',
+  SET_STORED_CARDLIST = '[MAIN CARD LIST] Setting stored cardlist'
 }
 
 export const fetchingCardList = createAction(
@@ -25,5 +26,9 @@ export const fetchingCardListFail = createAction(
 export const addCard = createAction(
   CardListTypes.ADD_NEW_CARD,
   props<{ payload: Card }>()
+);
+
+export const setStoredCardList = createAction(
+  CardListTypes.SET_STORED_CARDLIST
 );
 
