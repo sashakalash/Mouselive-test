@@ -1,14 +1,12 @@
-
-import { CardService } from '../../services/card.service';
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { map, catchError, switchMap, withLatestFrom } from 'rxjs/operators';
-import { of } from 'rxjs/internal/observable/of';
-import { CardListActions } from '../actions';
-import { Store, select } from '@ngrx/store';
+import { of } from 'rxjs';
+import { Store } from '@ngrx/store';
+
 import { AppState } from '../state';
-import { Observable } from 'rxjs';
-import { selectCardList } from '../reducers';
+import { CardService } from '../../services/card.service';
+import { CardListActions } from '../actions';
 
 @Injectable()
 
